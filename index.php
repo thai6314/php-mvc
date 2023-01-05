@@ -8,6 +8,7 @@ $controller = $_REQUEST['controller'] ?? 'index';
 $productController = new \controllers\ProductController();
 if(isset($_REQUEST['action'])){
     $action = $_REQUEST['action'];
+    echo $action;
     if(isset($_REQUEST['product_id'])){
         $productController->$action($_REQUEST['product_id']);
     }

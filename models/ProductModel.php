@@ -32,4 +32,15 @@ class ProductModel{
         return $prepareStatement->fetch(\PDO::FETCH_ASSOC);
     }
 
+    public function delete($product_id){
+        $sql = "DELETE product WHERE product_id= ?";
+        $conn = $this->db->openConnection();
+        $conn->prepare($sql)->execute($product_id);
+    }
+
+    public function add(array $product){
+        $sql = "INSERT INTO product (name, quantity, image, category_id, price, description) VALUES (?, ?, ?, ?, ?, ?)";
+        $conn= $this->db->openConnection();
+        $conn->prepare($sql)->execute($product);
+    }
 }
