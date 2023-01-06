@@ -33,9 +33,11 @@ class ProductModel{
     }
 
     public function delete($product_id){
-        $sql = "DELETE product WHERE product_id= ?";
+        $sql = "DELETE FROM product WHERE product_id= ?";
         $conn = $this->db->openConnection();
-        $conn->prepare($sql)->execute($product_id);
+        $prepareStatement = $conn->prepare($sql);
+        $prepareStatement->bindParam(1,$product_id);
+        $prepareStatement->execute();
     }
 
     public function add(array $product){
